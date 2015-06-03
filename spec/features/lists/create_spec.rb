@@ -39,13 +39,7 @@ describe "Creating todo lists" do
 
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New List")
-
-    fill_in "Title", with: "Hi"
-    fill_in "Description", with: "This is what I'm doing today."
-    click_button "Create List"
+    create_todo_list title:"Hi"
   
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
@@ -58,13 +52,7 @@ describe "Creating todo lists" do
 
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New List")
-
-    fill_in "Title", with: "Grocery list"
-    fill_in "Description", with: ""
-    click_button "Create List"
+    create_todo_list title: "Grocery List", description: ""
   
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
@@ -77,13 +65,7 @@ describe "Creating todo lists" do
 
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New List")
-
-    fill_in "Title", with: "Grocery list"
-    fill_in "Description", with: "Food"
-    click_button "Create List"
+    create_todo_list title: "Grocery list", description: "Food"
   
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
